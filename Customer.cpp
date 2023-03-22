@@ -109,6 +109,13 @@ std::string Customer::printStatement(RentalLog customerLog)
 	result << "You earned " << customerLog.totalRenterPoints
 		<< " frequent renter points" << std::endl;
 
+	// Add new figures for this rental(Genre, MovieTitle, Rental Period(day), Rental fee)
+	for (int i = 0; i < customerLog.titleName.size(); i++) {
+		result << "\t" << "장르: " << customerLog.genreName[i] << "\t" << "제목: " << customerLog.titleName[i]
+			<< "\t" << "대여일: " << customerLog.rentalDays[i] << "\t" << "대여료: " << customerLog.rentalAmount[i] << std::endl;
+	}
+
+
 	return result.str();
 }
 
