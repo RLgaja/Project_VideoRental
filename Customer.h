@@ -9,6 +9,7 @@
 // Define a structure to store information about a customer rental
 struct RentalLog {
 	std::vector< std::string > titleName; // Title name of the rented movie
+	std::vector< std::string > genreName; // genre name of the rented movie
 	std::vector< double > rentalAmount; // Rental fee charged for the rented movie
 	std::vector< int > rentalDays; // Number of days the rented movie
 	double totalRentalFee = 0.; // Total Rental Fee
