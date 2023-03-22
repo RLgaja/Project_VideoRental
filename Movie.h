@@ -5,9 +5,10 @@
 
 class Movie {
 public:
-	static const int CHILDRENS = 2;
+	// Change the position of variables based on their values.
 	static const int REGULAR = 0;
 	static const int NEW_RELEASE = 1;
+	static const int CHILDRENS = 2;
 
 	Movie(const std::string& title, int priceCode = REGULAR);
 
