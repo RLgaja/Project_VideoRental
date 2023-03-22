@@ -29,6 +29,8 @@ std::string Customer::statement()
 		customerLog.totalRenterPoints += frequentRenterPoints;
 		customerLog.totalRentalFee += thisAmount;
 		customerLog.titleName.push_back(each.getMovie().getTitle());
+		// add customerLog.genreName to save genreName for each movie
+		customerLog.genreName.push_back(each.getMovie().getGenre(each.getMovie().getPriceCode()));
 		customerLog.rentalAmount.push_back(thisAmount);
 		customerLog.rentalDays.push_back(each.getDaysRented());
 	}
@@ -109,3 +111,4 @@ std::string Customer::printStatement(RentalLog customerLog)
 
 	return result.str();
 }
+
