@@ -18,6 +18,8 @@ public:
 
 	// Generate a statement for the customer
 	std::string statement();
+	//add funtion to determine amounts for each rental
+	double getRentalFee(Rental);
 
 private:
 	std::string customerName;
