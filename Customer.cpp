@@ -28,6 +28,13 @@ std::string Customer::statement()
 		thisAmount = getRentalFee(each);
 		frequentRenterPoints = getRenterPoints(each);
 
+		// Save information of customer rental
+		customerLog.totalRenterPoints += frequentRenterPoints;
+		customerLog.totalRentalFee += thisAmount;
+		customerLog.titleName.push_back(each.getMovie().getTitle());
+		customerLog.rentalAmount.push_back(thisAmount);
+		customerLog.rentalDays.push_back(each.getDaysRented());
+
 		// Show figures for this rental
 		result << "\t" << each.getMovie().getTitle() << "\t"
 			<< thisAmount << std::endl;
@@ -86,4 +93,3 @@ int Customer::getRenterPoints(Rental each)
 
 	return resultPoints;
 }
-
