@@ -78,7 +78,9 @@ int Customer::getRenterPoints(Rental each)
 	int resultPoints = 0;
 
 	// Add frequent renter points
-	resultPoints++;
+	// except for new genre "SPECIAL_EVENT_MOVIE"
+	if (each.getMovie().getPriceCode() != Movie::SPECIAL_EVENT_MOVIE)
+		resultPoints++;
 
 	// Add bonus for a two day new release rental
 	if ((each.getMovie().getPriceCode() == Movie::NEW_RELEASE)
