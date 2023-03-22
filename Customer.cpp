@@ -61,6 +61,12 @@ double Customer::getRentalFee(Rental each)
 			thisAmount += (each.getDaysRented() - 3) * 1.5;
 		break;
 
+	// add calculation formula about rental fee for a new genre "SPECIAL_EVENT_MOVIE"
+	case Movie::SPECIAL_EVENT_MOVIE:
+		thisAmount += 1.0;
+		if (each.getDaysRented() > 2)
+			thisAmount += (each.getDaysRented() - 2) * 2.0;
+		break;
 	}
 	return thisAmount;
 
