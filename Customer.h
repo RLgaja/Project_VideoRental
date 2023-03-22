@@ -20,6 +20,8 @@ public:
 	std::string statement();
 	//add funtion to determine amounts for each rental
 	double getRentalFee(Rental);
+	//add funtion to determine bonus points for each rental
+	int getRenterPoints(Rental);
 
 private:
 	std::string customerName;

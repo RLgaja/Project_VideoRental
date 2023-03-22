@@ -9,7 +9,7 @@ using std::vector;
 std::string Customer::statement()
 {
 	double totalAmount = 0.;
-	int frequentRenterPoints = 0;
+	int totalRenterPoints = 0; // Total renter points earned by the customer
 
 	std::vector< Rental >::iterator iter = customerRentals.begin();
 	std::vector< Rental >::iterator iter_end = customerRentals.end();
@@ -22,26 +22,23 @@ std::string Customer::statement()
 	for (; iter != iter_end; ++iter) {
 
 		double thisAmount = 0.;
+		int frequentRenterPoints = 0;
 		Rental each = *iter;
 
 		thisAmount = getRentalFee(each);
-
-		// Add frequent renter points
-		frequentRenterPoints++;
-
-		// Add bonus for a two day new release rental
-		if ((each.getMovie().getPriceCode() == Movie::NEW_RELEASE)
-			&& each.getDaysRented() > 1) frequentRenterPoints++;
+		frequentRenterPoints = getRenterPoints(each);
 
 		// Show figures for this rental
 		result << "\t" << each.getMovie().getTitle() << "\t"
 			<< thisAmount << std::endl;
 		totalAmount += thisAmount;
+		totalRenterPoints += frequentRenterPoints;
+
 	}
 
 	// Add footer lines
 	result << "Amount owed is " << totalAmount << "\n";
-	result << "You earned " << frequentRenterPoints
+	result << "You earned " << totalRenterPoints
 		<< " frequent renter points";
 
 	return result.str();
@@ -73,5 +70,20 @@ double Customer::getRentalFee(Rental each)
 	}
 	return thisAmount;
 
+}
+
+//add funtion to determine bonus points for each rental
+int Customer::getRenterPoints(Rental each)
+{
+	int resultPoints = 0;
+
+	// Add frequent renter points
+	resultPoints++;
+
+	// Add bonus for a two day new release rental
+	if ((each.getMovie().getPriceCode() == Movie::NEW_RELEASE)
+		&& each.getDaysRented() > 1) resultPoints++;
+
+	return resultPoints;
 }
 
