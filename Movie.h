@@ -16,9 +16,14 @@ public:
 	int getPriceCode() const;
 	void setPriceCode(int arg);
 	std::string getTitle() const;
+	// add function to get genre name from moviePriceCode 
+	std::string getGenre(int arg) const;
 
 private:
 	std::string movieTitle;
+	// add string array to define genre name
+	std::string movieGenre[4] = { "REGULAR", "NEW_RELEASE", "CHILDRENS", "SPECIAL_EVENT_MOVIE" };
+
 	int moviePriceCode;
 };
 
@@ -32,5 +37,7 @@ inline int Movie::getPriceCode() const { return moviePriceCode; }
 inline void Movie::setPriceCode(int arg) { moviePriceCode = arg; }
 
 inline std::string Movie::getTitle() const { return movieTitle; }
+
+inline std::string Movie::getGenre(int arg) const { return movieGenre[arg]; }
 
 #endif // MOVIE_H
