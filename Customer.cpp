@@ -16,7 +16,7 @@ std::string Customer::statement()
 
 	// result will be returned by statement()
 	std::ostringstream result;
-	result << "Rental Record for " << getName() << "\n";
+	result << "Rental Record for " << getCustomerName() << "\n";
 
 	// Loop over customer's rentals
 	for (; iter != iter_end; ++iter) {

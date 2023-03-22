@@ -14,7 +14,7 @@ public:
 	explicit Customer(const std::string& name);
 
 	void addRental(const Rental& arg);
-	std::string getName() const;
+	std::string getCustomerName() const;
 
 	// Generate a statement for the customer
 	std::string statement();
@@ -33,6 +33,6 @@ inline Customer::Customer(const std::string& name) :
 
 inline void Customer::addRental(const Rental& arg) { customerRentals.push_back(arg); }
 
-inline std::string Customer::getName() const { return customerName; }
+inline std::string Customer::getCustomerName() const { return customerName; }
 
 #endif // CUSTOMER_HH
