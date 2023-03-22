@@ -14,9 +14,6 @@ std::string Customer::statement()
 	std::vector< Rental >::iterator iter = customerRentals.begin();
 	std::vector< Rental >::iterator iter_end = customerRentals.end();
 
-	// result will be returned by statement()
-	std::ostringstream result;
-	result << "Rental Record for " << getCustomerName() << "\n";
 
 	// Loop over customer's rentals
 	for (; iter != iter_end; ++iter) {
@@ -34,21 +31,11 @@ std::string Customer::statement()
 		customerLog.titleName.push_back(each.getMovie().getTitle());
 		customerLog.rentalAmount.push_back(thisAmount);
 		customerLog.rentalDays.push_back(each.getDaysRented());
-
-		// Show figures for this rental
-		result << "\t" << each.getMovie().getTitle() << "\t"
-			<< thisAmount << std::endl;
-		totalAmount += thisAmount;
-		totalRenterPoints += frequentRenterPoints;
-
 	}
 
-	// Add footer lines
-	result << "Amount owed is " << totalAmount << "\n";
-	result << "You earned " << totalRenterPoints
-		<< " frequent renter points";
+	std::string strResult = printStatement(customerLog);
 
-	return result.str();
+	return strResult;
 }
 
 //add funtion to determine amounts for each rental
@@ -92,4 +79,25 @@ int Customer::getRenterPoints(Rental each)
 		&& each.getDaysRented() > 1) resultPoints++;
 
 	return resultPoints;
+}
+
+//add funtion to print a rental receipt for the customer
+std::string Customer::printStatement(RentalLog customerLog)
+{
+	// result will be returned by statement()
+	std::ostringstream result;
+	result << "Rental Record for " << getCustomerName() << "\n";
+
+	// Show figures for this rental
+	for (int i = 0; i < customerLog.titleName.size(); i++) {
+		result << "\t" << "제목: " << customerLog.titleName[i] << "\t"
+			<< "대여료: " << customerLog.rentalAmount[i] << std::endl;
+	}
+
+	// Add footer lines
+	result << "Amount owed is " << customerLog.totalRentalFee << "\n";
+	result << "You earned " << customerLog.totalRenterPoints
+		<< " frequent renter points" << std::endl;
+
+	return result.str();
 }

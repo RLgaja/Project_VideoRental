@@ -31,6 +31,9 @@ public:
 	double getRentalFee(Rental);
 	// Determine bonus points for each rental
 	int getRenterPoints(Rental);
+	// Prints a rental receipt for the customer
+	std::string printStatement(RentalLog);
+
 
 
 private:
